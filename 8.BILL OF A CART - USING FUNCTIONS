@@ -1,0 +1,60 @@
+def calculate_bill(cart_items):
+    subtotal = 0
+    # 1. Calculate subtotal for all items
+    for item in cart_items:
+        # Unpack the tuple: name, quantity, price
+        name, quantity, price = item
+        item_subtotal = quantity * price
+        subtotal += item_subtotal
+
+    # 2. Calculate discount (e.g., 10% if subtotal > 100)
+    discount_rate = 0.10 if subtotal > 100 else 0.0
+    discount_amount = subtotal * discount_rate
+    amount_after_discount = subtotal - discount_amount
+
+    # 3. Calculate tax (e.g., 8% tax rate)
+    tax_rate = 0.08
+    tax_amount = amount_after_discount * tax_rate
+
+    # 4. Calculate final bill
+    final_bill = amount_after_discount + tax_amount
+
+    return subtotal, discount_amount, tax_amount, final_bill
+
+
+def print_bill(cart_items, bill_details):
+    """
+    Prints a formatted bill.
+    """
+    subtotal, discount_amount, tax_amount, final_bill = bill_details
+
+    print("\n" + "*" * 30)
+    print("        INVOICE")
+    print("*" * 30)
+    print(f"{'Item Name':<15} {'Qty':<5} {'Price':<7}")
+    print("-" * 30)
+    for item in cart_items:
+        name, quantity, price = item
+        print(f"{name:<15} {quantity:<5} ${price:<7.2f}")
+    print("-" * 30)
+    print(f"Subtotal:         ${subtotal:>8.2f}")
+    print(f"Discount Applied:  ${discount_amount:>7.2f}")
+    print(f"Tax Amount:       ${tax_amount:>7.2f}")
+    print("-" * 30)
+    print(f"FINAL TOTAL:      ${final_bill:>8.2f}")
+    print("*" * 30)
+
+
+# Example Usage
+# Define the items in the cart as a list of tuples: (name, quantity, price)
+shopping_cart = [
+    ("Rice", 5,  1200.00),
+    ("Mat", 2,  25.50),
+    ("chilli powder", 5,  5.99)
+]
+
+# Calculate the bill details
+bill_info = calculate_bill(shopping_cart)
+
+# Print the bill
+print_bill(shopping_cart, bill_info)
