@@ -1,0 +1,9 @@
+import st_module
+a={1,2,3,4,5}
+b={6,7,8,9,1,2}
+print("\n set a :",a)
+print("\n set b :",b)
+print("\n Union :",st_module.union(a,b))
+print("\n intersection :",st_module.intersection(a,b))
+print("\n difference :",st_module.difference(a,b))
+print("\n symmetric_difference :",st_module.symmetric_difference(a,b))
