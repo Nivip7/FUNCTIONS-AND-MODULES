@@ -1,0 +1,6 @@
+import m_f
+n=int(input("ENTER NUMBER:"))
+f=m_f.factors(n)
+print("factors:",f)
+p=m_f.prime_factors(n)
+print("primefactors:",p)
